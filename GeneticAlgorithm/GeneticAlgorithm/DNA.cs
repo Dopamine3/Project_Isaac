@@ -6,7 +6,33 @@ using System.Threading.Tasks;
 
 namespace GeneticAlgorithm
 {
-    class DNA
+    public class DNA<T>
     {
+        public T[] Genes { get; private set; }
+        public float Fitness { get; private set; }
+
+        private Random random;
+        private Func<T> getRandomGene;
+        private Func<int, float> fitnessFunction;
+
+        public DNA(int size, Random random, Func<T> getRandomGene, Func<int, float> fitnessFunction, bool shouldInitGenes = true)
+        {
+            Genes = new T[size];
+            this.random = random;
+            this.getRandomGene = getRandomGene;
+            this.fitnessFunction = fitnessFunction;
+
+            if (shouldInitGenes)
+            {
+                for (int i = 0; i < Genes.Length; i++)
+                {
+                    Genes[i] = getRandomGene();
+                }
+            }
+        }
+
+       
     }
+
 }
+
