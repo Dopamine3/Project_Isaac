@@ -31,7 +31,13 @@ namespace GeneticAlgorithm
             }
         }
 
-       
+        public float CalculateFitness(int index)
+        {
+            Fitness = fitnessFunction(index);
+            return Fitness;
+        }
+
+      
     }
 
 }
