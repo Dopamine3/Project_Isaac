@@ -37,19 +37,26 @@ namespace GeneticAlgorithm
             return Fitness;
         }
 
-        public DNA<T> Crossover(DNA<T> otherParent)
+        public DNA<T>Crossover(DNA<T> otherParent)
         {
             DNA<T> child = new DNA<T>(Genes.Length, random, getRandomGene, fitnessFunction, shouldInitGenes: false);
-
             for (int i = 0; i < Genes.Length; i++)
             {
                 child.Genes[i] = random.NextDouble() < 0.5 ? Genes[i] : otherParent.Genes[i];
             }
-
             return child;
         }
 
-        
+        public void Mutate(float mutationRate)
+        {
+            for (int i = 0; i < Genes.Length ; i++)
+            {
+                if (random .NextDouble ()<mutationRate )
+                {
+                    Genes[i] = getRandomGene();
+                }
+            }
+        }
     }
 
 }
